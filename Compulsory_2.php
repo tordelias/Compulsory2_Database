@@ -46,3 +46,26 @@
                 </tr>';
             } while ($rad = mysqli_fetch_assoc($resultat));
             echo'</table>';
+
+      $setning2  = "SELECT * FROM items";
+   //  echo $setning;
+     $resultat2 = mysqli_query($mysql, $setning2);
+     $rad2 = mysqli_fetch_assoc($resultat2);
+     if($rad2 == 0)
+         echo '<meta http-equiv="refresh" content="2 ; URL=index.php">';
+     echo "<p>";
+             echo '<table border = "1">';
+        
+        echo '<caption><h3> Items </h3></caption>';    
+        echo '<tr><th>ItemNr</th><th>Price</th><th>Item</th><th>Sold</th><th>Profit</th></tr>';
+            do
+            {
+                echo '<tr>
+                <td>'.$rad2['ItemNr'].'</td>
+                <td>'.$rad2['Price'].'</td>
+                <td>'.$rad2['Item'].'</td>
+                 <td>'.$rad2['Sold'].'</td>
+                 <td>'.$rad2['Profit'].'</td>
+                </tr>';
+            } while ($rad2 = mysqli_fetch_assoc($resultat2));
+            echo'</table>';
