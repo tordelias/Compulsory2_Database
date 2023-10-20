@@ -1,7 +1,7 @@
 CREATE TABLE `playerdata` (
   `PlayerID` int NOT NULL,
   `PlayerName` varchar(245) NOT NULL,
-  `Rank` varchar(45) DEFAULT NULL,
+  `PlayerRank` varchar(45) DEFAULT NULL,
   `Banned` tinyint(1) NOT NULL,
   `Temp Bans` int DEFAULT NULL,
   PRIMARY KEY (`Player ID`)
