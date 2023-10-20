@@ -1,6 +1,13 @@
     <?php
 
-    echo "Compulsory 2 website";
+
+            echo "<h1>Compulsory 2 Website</h1>";
+            print "<p></p>";
+            echo "<p></p>";
+            echo "<p></p>";
+            echo "<p>Paragraf</p>";
+
+
 
         $Host = 'localhost';
         $User = 'root';
@@ -14,5 +21,5 @@
             exit();
         } 
         else {
-//            printf("alt ok!")
+            printf("alt ok!");
         }
