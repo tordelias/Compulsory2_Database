@@ -1,4 +1,4 @@
-CREATE TABLE `player data` (
+CREATE TABLE `playerdata` (
   `Player ID` int NOT NULL,
   `Player Name` varchar(245) NOT NULL,
   `Rank` varchar(45) DEFAULT NULL,
