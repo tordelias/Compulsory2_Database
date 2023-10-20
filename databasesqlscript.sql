@@ -4,7 +4,7 @@ CREATE TABLE `playerdata` (
   `PlayerRank` varchar(45) DEFAULT NULL,
   `Banned` tinyint(1) NOT NULL,
   `Temp Bans` int DEFAULT NULL,
-  PRIMARY KEY (`Player ID`)
+  PRIMARY KEY (`PlayerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `transaction` (
   `PlayerID` int NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `transaction` (
   `Price` int DEFAULT NULL,
   `OrderNr` int NOT NULL,
   `Date` date NOT NULL,
-  PRIMARY KEY (`Player ID`)
+  PRIMARY KEY (`PlayerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `items` (
   `ItemNr` int NOT NULL,
@@ -20,5 +20,5 @@ CREATE TABLE `items` (
   `Item` varchar(45) DEFAULT NULL,
   `Sold` int DEFAULT NULL,
   `Profit` int DEFAULT NULL,
-  PRIMARY KEY (`Item Nr`)
+  PRIMARY KEY (`ItemNr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
