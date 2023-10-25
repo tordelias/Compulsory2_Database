@@ -3,7 +3,7 @@ CREATE TABLE `playerdata` (
   `PlayerName` varchar(245) NOT NULL,
   `PlayerRank` varchar(45) DEFAULT NULL,
   `Banned` tinyint(1) NOT NULL,
-  `Temp Bans` int DEFAULT NULL,
+  `TempBans` int DEFAULT NULL,
   PRIMARY KEY (`PlayerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `transaction` (
