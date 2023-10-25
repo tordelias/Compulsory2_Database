@@ -22,3 +22,10 @@ CREATE TABLE `items` (
   `Profit` int DEFAULT NULL,
   PRIMARY KEY (`ItemNr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `compulsory2`.`logininfo` (
+  `PlayerID` INT NOT NULL,
+  `Username` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `PhoneNumber` INT NULL,
+  PRIMARY KEY (`PlayerID`));
