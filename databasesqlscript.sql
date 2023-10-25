@@ -28,4 +28,12 @@ CREATE TABLE `logininfo` (
   `Password` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
   `PhoneNumber` INT NULL,
+  PRIMARY KEY (`PlayerID`)
+  );
+  CREATE TABLE `compulsory2`.`logdata` (
+  `PlayerID` INT NOT NULL,
+  `Time` DATETIME NULL,
+  `Action` VARCHAR(45) NULL,
+  `Location` VARCHAR(45) NULL,
+  `Gameversion` FLOAT NULL,
   PRIMARY KEY (`PlayerID`));
