@@ -30,7 +30,7 @@ CREATE TABLE `logininfo` (
   `PhoneNumber` INT NULL,
   PRIMARY KEY (`PlayerID`)
   );
-  CREATE TABLE `compulsory2`.`logdata` (
+  CREATE TABLE`logdata` (
   `PlayerID` INT NOT NULL,
   `Time` DATETIME NULL,
   `Action` VARCHAR(45) NULL,
