@@ -100,6 +100,52 @@ do {
 } while ($rad = mysqli_fetch_assoc($resultat));
 echo '</table>';
 
+//Fourth
+$setning  = "select * from logininfo";
+//  echo $setning;
+$resultat = mysqli_query($mysql, $setning);
+$rad = mysqli_fetch_assoc($resultat);
+if ($rad == 0)
+    echo '<meta http-equiv="refresh" content="2 ; URL=index.php">';
+echo "<p>";
+echo '<table border="1" class="cool-table">'; // Added class attribute
+
+echo '<caption><h3> Logininfo </h3></caption>';
+echo '<tr><th>PlayerID</th><th>Username</th><th>Password</th><th>Email</th><th>PhoneNumber</th></tr>';
+do {
+    echo '<tr>
+        <td>' . $rad['PlayerID'] . '</td>
+        <td>' . $rad['Username'] . '</td>
+        <td>' . $rad['Password'] . '</td>
+        <td>' . $rad['Email'] . '</td>
+        <td>' . $rad['PhoneNumber'] . '</td>
+        </tr>';
+} while ($rad = mysqli_fetch_assoc($resultat));
+echo '</table>';
+
+//Fifth
+$setning  = "select * from logdata";
+//  echo $setning;
+$resultat = mysqli_query($mysql, $setning);
+$rad = mysqli_fetch_assoc($resultat);
+if ($rad == 0)
+    echo '<meta http-equiv="refresh" content="2 ; URL=index.php">';
+echo "<p>";
+echo '<table border="1" class="cool-table">'; // Added class attribute
+
+echo '<caption><h3> LogData </h3></caption>';
+echo '<tr><th>PlayerID</th><th>Time</th><th>Action</th><th>Location</th><th>Gameversion</th></tr>';
+do {
+    echo '<tr>
+        <td>' . $rad['PlayerID'] . '</td>
+        <td>' . $rad['Time'] . '</td>
+        <td>' . $rad['Action'] . '</td>
+        <td>' . $rad['Location'] . '</td>
+        <td>' . $rad['Gameversion'] . '</td>
+        </tr>';
+} while ($rad = mysqli_fetch_assoc($resultat));
+echo '</table>';
+
 echo '</div>';
 
 echo "</body>";
