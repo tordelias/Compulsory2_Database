@@ -41,10 +41,15 @@
             background-color: #333;
             color: #fff;
         }
-    </style>
+    </style>    
 </head>
 <body>
     <h1>Magic&Steel</h1>
+    <form method="post">
+   Enter PlayerID <input name="name" type="number">
+    <input type="submit">
+
+
     <?php
     $Host = 'localhost';
     $User = 'root';
@@ -58,7 +63,15 @@
     exit();
     }
 
+    
+
+if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] > 0)) {
+    echo "if is true";
+    $player_search = $_POST['name'];
+    $setning = "SELECT * FROM playerdata WHERE PlayerID = '$player_search'";
+} else {
     $setning = "SELECT * FROM playerdata";
+}
     $resultat = mysqli_query($mysql, $setning);
     $rad = mysqli_fetch_assoc($resultat);
 
@@ -86,6 +99,46 @@
 
         echo '
     </table>';
+
+
+
+    $GetMaxPlayerID = "select Count(playerID) from playerdata;";
+    $maxplayeriD = mysqli_query($mysql, $GetMaxPlayerID);
+    $maxplayeriDCount = mysqli_fetch_assoc($maxplayeriD);
+    $maxplayeriDCount = $maxplayeriDCount; 
+        if ($maxplayeriDCount == 0) {
+    echo '<meta http-equiv="refresh" content="2; URL=index.php">';
+    }
+
+
+if ((isset($_POST['name2'])) && !empty($_POST['name2']))
+{
+    $player_search2 = $_POST['name2'];
+    $insertfunktion ="Insert into playerdata (PlayerID, PlayerName, PlayerRank, Banned, TempBans) Values 
+(" . $maxplayeriDCount['Count(playerID)'] + 1 . ", '" . $player_search2 . "', 'Bronze', 0 , 0)";
+    $insert = mysqli_query($mysql, $insertfunktion);
+}
+
+if ((isset($_POST['name3'])) && !empty($_POST['name3']))
+{
+        $player_searchID = $_POST['name3'];
+         $player_searchBanned = $_POST['name4'];
+         $UpdateFunktion = "UPDATE playerdata SET Banned = ". $player_searchBanned .  " WHERE PlayerID = ". $player_searchID;
+         $Update = mysqli_query($mysql, $UpdateFunktion);
+}
+
     ?>
+            <form method="post">
+   Enter PlayerName <input name="name2" type="text">
+    <input type="submit">
+    <p>
+     <p>
+      <p>
+                <form method="post">
+   Enter PlayerID <input name="name3" type="text">
+   Change banned state <input name="name4" type="number">
+    <input type="submit">
+
+
 </body>
 </html>
