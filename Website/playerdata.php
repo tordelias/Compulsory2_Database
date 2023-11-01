@@ -143,9 +143,36 @@ if ((isset($_POST['name2'])) && !empty($_POST['name2']))
 if ((isset($_POST['name3'])) && !empty($_POST['name3']))
 {
         $player_searchID = $_POST['name3'];
-        $player_searchBanned = $_POST['name4'];
+       
+
+        if (isset($_POST['name4']))
+        {
+        $player_searchName = $_POST['name4'];
+        $UpdateFunktion = "UPDATE playerdata SET PlayerName = '". $player_searchName .  "'WHERE PlayerID = ". $player_searchID;
+        $Update = mysqli_query($mysql, $UpdateFunktion);
+        }
+
+        if (isset($_POST['name5']))
+        {
+        $player_searchRank = $_POST['name5'];
+        $UpdateFunktion = "UPDATE playerdata SET PlayerRank = '" . $player_searchRank .  "' WHERE PlayerID = ". $player_searchID;
+        $Update = mysqli_query($mysql, $UpdateFunktion);
+        }
+       
+        if (isset($_POST['name6']))
+        {
+        $player_searchBanned = $_POST['name6'];
         $UpdateFunktion = "UPDATE playerdata SET Banned = ". $player_searchBanned .  " WHERE PlayerID = ". $player_searchID;
         $Update = mysqli_query($mysql, $UpdateFunktion);
+        }
+
+        if (isset($_POST['name7']))
+        {
+        $player_searchTempBans = $_POST['name7'];
+        $UpdateFunktion = "UPDATE playerdata SET TempBans = " . $player_searchTempBans .  " WHERE PlayerID = ". $player_searchID;
+        $Update = mysqli_query($mysql, $UpdateFunktion);
+        }
+
         header('Location: playerdata.php');
         exit();
 }
@@ -158,8 +185,11 @@ ob_end_flush();
      <p>
       <p>
                 <form method="post">
-   Enter PlayerID <input name="name3" type="text">
-   Change banned state <input name="name4" type="number">
+   Enter PlayerID <input name="name3" type="number">
+   Change Name <input name="name4" type="text">
+   Change Rank <input name="name5" type="text">
+   Change banned state <input name="name6" type="number">
+   Change Tempbans <input name="name7" type="number">
     <input type="submit">
 
 
