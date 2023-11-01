@@ -75,9 +75,8 @@
     }
 
 //first input 
-$test = (float) $_POST['name']; 
 
-    if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] > 0) && ( $test < $maxplayeriDCount['Count(playerID)'])) {
+    if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] > 0) && ( $_POST['name'] <= $maxplayeriDCount['Count(playerID)'])) {
    // echo "if is true";
     $player_search = $_POST['name'];
     $setning = "SELECT * FROM transaction WHERE PlayerID = '$player_search'";
