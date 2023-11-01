@@ -43,6 +43,17 @@
         }
     </style>
 </head>
+<div class="menu">
+        <ul>
+            <li><a href="index.php">MainMenu</a></li>
+            <li><a href="playerdata.php">Player Data</a></li>
+            <li><a href="items.php">Items</a></li>
+            <li><a href="transaction.php">Transactions</a></li>
+            <li><a href="logininfo.php">Login Info</a></li>
+            <li><a href="logdata.php">Log Data</a></li>
+        </ul>
+    </div>
+    <button type="button" onclick="history.back();"><</button>
 <body>
     <h1>Magic&Steel</h1>
     <?php

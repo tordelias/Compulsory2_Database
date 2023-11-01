@@ -43,6 +43,18 @@
         }
     </style>    
 </head>
+
+<div class="menu">
+        <ul>
+            <li><a href="index.php">MainMenu</a></li>
+            <li><a href="playerdata.php">Player Data</a></li>
+            <li><a href="items.php">Items</a></li>
+            <li><a href="transaction.php">Transactions</a></li>
+            <li><a href="logininfo.php">Login Info</a></li>
+            <li><a href="logdata.php">Log Data</a></li>
+        </ul>
+    </div>
+    <button type="button" onclick="history.back();"><</button>
 <body>
     <h1>Magic&Steel</h1>
     <form method="post">
@@ -51,6 +63,9 @@
 
 
     <?php
+
+    ob_start();
+
     $Host = 'localhost';
     $User = 'root';
     $Password = '';
@@ -120,16 +135,21 @@ if ((isset($_POST['name2'])) && !empty($_POST['name2']))
     $insertfunktion ="Insert into playerdata (PlayerID, PlayerName, PlayerRank, Banned, TempBans) Values 
 (" . $maxplayeriDCount['Count(playerID)'] + 1 . ", '" . $player_search2 . "', 'Bronze', 0 , 0)";
     $insert = mysqli_query($mysql, $insertfunktion);
+
+    header('Location: playerdata.php');
+    exit();
 }
 
 if ((isset($_POST['name3'])) && !empty($_POST['name3']))
 {
         $player_searchID = $_POST['name3'];
-         $player_searchBanned = $_POST['name4'];
-         $UpdateFunktion = "UPDATE playerdata SET Banned = ". $player_searchBanned .  " WHERE PlayerID = ". $player_searchID;
-         $Update = mysqli_query($mysql, $UpdateFunktion);
+        $player_searchBanned = $_POST['name4'];
+        $UpdateFunktion = "UPDATE playerdata SET Banned = ". $player_searchBanned .  " WHERE PlayerID = ". $player_searchID;
+        $Update = mysqli_query($mysql, $UpdateFunktion);
+        header('Location: playerdata.php');
+        exit();
 }
-
+ob_end_flush();
     ?>
             <form method="post">
    Enter PlayerName <input name="name2" type="text">

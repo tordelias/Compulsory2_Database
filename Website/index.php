@@ -44,6 +44,7 @@
     <div class="background"></div>
     <div class="menu">
         <ul>
+            <li><a href="index.php">MainMenu</a></li>
             <li><a href="playerdata.php">Player Data</a></li>
             <li><a href="items.php">Items</a></li>
             <li><a href="transaction.php">Transactions</a></li>
