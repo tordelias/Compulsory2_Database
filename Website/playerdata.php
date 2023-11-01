@@ -60,12 +60,21 @@
 
     if (mysqli_connect_errno()) {
     printf("Connection error: %s", mysqli_connect_error());
+
     exit();
+    }
+
+        $GetMaxPlayerID = "select Count(playerID) from playerdata;";
+    $maxplayeriD = mysqli_query($mysql, $GetMaxPlayerID);
+    $maxplayeriDCount = mysqli_fetch_assoc($maxplayeriD);
+    $maxplayeriDCount = $maxplayeriDCount; 
+        if ($maxplayeriDCount == 0) {
+    echo '<meta http-equiv="refresh" content="2; URL=index.php">';
     }
 
     
 
-if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] > 0)) {
+if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] > 0) && $_POST['name'] <= $maxplayeriDCount['Count(playerID)'] ) {
     echo "if is true";
     $player_search = $_POST['name'];
     $setning = "SELECT * FROM playerdata WHERE PlayerID = '$player_search'";
@@ -102,13 +111,7 @@ if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] >
 
 
 
-    $GetMaxPlayerID = "select Count(playerID) from playerdata;";
-    $maxplayeriD = mysqli_query($mysql, $GetMaxPlayerID);
-    $maxplayeriDCount = mysqli_fetch_assoc($maxplayeriD);
-    $maxplayeriDCount = $maxplayeriDCount; 
-        if ($maxplayeriDCount == 0) {
-    echo '<meta http-equiv="refresh" content="2; URL=index.php">';
-    }
+
 
 
 if ((isset($_POST['name2'])) && !empty($_POST['name2']))

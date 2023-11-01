@@ -45,6 +45,9 @@
 </head>
 <body>
     <h1>Magic&Steel</h1>
+            <form method="post">
+   Enter PlayerID <input name="name" type="number">
+    <input type="submit">
     <?php
     $Host = 'localhost';
     $User = 'root';
@@ -60,10 +63,28 @@
     // printf("alt ok!");
     }
 
+    $GetMaxPlayerID = "select Count(playerID) from logininfo;";
+    $maxplayeriD = mysqli_query($mysql, $GetMaxPlayerID);
+    $maxplayeriDCount = mysqli_fetch_assoc($maxplayeriD);
+    $maxplayeriDCount = $maxplayeriDCount; 
+        if ($maxplayeriDCount == 0) {
+    echo '<meta http-equiv="refresh" content="2; URL=index.php">';
+    }
+
+//first input 
+
+    if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] > 0) && ( $_POST['name'] <= $maxplayeriDCount['Count(playerID)'])) {
+   // echo "if is true";
+    $player_search = $_POST['name'];
+    $setning = "SELECT * FROM logininfo WHERE PlayerID = '$player_search'";
+} else {
     $setning  = "select * from logininfo";
-    //  echo $setning;
+}
     $resultat = mysqli_query($mysql, $setning);
     $rad = mysqli_fetch_assoc($resultat);
+
+
+
     if ($rad == 0)
     echo '<meta http-equiv="refresh" content="2 ; URL=index.php">';
     echo "<p>
