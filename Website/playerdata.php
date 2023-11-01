@@ -131,15 +131,26 @@ if ((isset($_POST['name'])) && (is_numeric($_POST['name'])) && ($_POST['name'] >
 
 if ((isset($_POST['name2'])) && !empty($_POST['name2']))
 {
+    $Password1 = "Password". $maxplayeriDCount['Count(playerID)'] + 1;
+    $CurrentPlayerID = $maxplayeriDCount['Count(playerID)'] + 1; 
+
     $player_search2 = $_POST['name2'];
     $insertfunktion ="Insert into playerdata (PlayerID, PlayerName, PlayerRank, Banned, TempBans) Values 
 (" . $maxplayeriDCount['Count(playerID)'] + 1 . ", '" . $player_search2 . "', 'Bronze', 0 , 0)";
     $insert = mysqli_query($mysql, $insertfunktion);
 
+    $insertfunktion ="Insert into logininfo (PlayerID, Username, Password, Email, PhoneNumber) Values 
+(" . $maxplayeriDCount['Count(playerID)'] + 1 . ", '" . $player_search2 . "', '". $Password1 ."', '". $player_search2 ." @example.com' , NULL)";
+    $insert = mysqli_query($mysql, $insertfunktion);
+
+     $insertfunktion ="Insert into logdata (PlayerID, Time, Action, Location, Gameversion) Values 
+(" . $CurrentPlayerID . ", '2023-10-26 19:15:00', 'Logout', 'Louisville' , 1.5)";
+ $insert = mysqli_query($mysql, $insertfunktion);
+
     header('Location: playerdata.php');
     exit();
 }
-
+    
 if ((isset($_POST['name3'])) && !empty($_POST['name3']))
 {
         $player_searchID = $_POST['name3'];

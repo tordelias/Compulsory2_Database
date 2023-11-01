@@ -56,7 +56,22 @@
     <button type="button" onclick="history.back();"><</button>
 <body>
     <h1>Magic&Steel</h1>
+        <form method="post">
+    Enter New Item Name: <input name="item_name" type="text">
+    Item Price: <input name="item_price" type="number">
+    <input type="submit" value="Insert">
+    <p>
+    <form method="post">
+    Enter Item Number: <input name="update_item_id" type="number">
+    New Price: <input name="update_item_price" type="number">
+    <input type="submit" value="Update">
+    </form>
+
+
     <?php
+
+    ob_start();
+
     $Host = 'localhost';
     $User = 'root';
     $Password = '';
@@ -69,6 +84,42 @@
     exit();
     } else {
     // printf("alt ok!");
+    }
+
+        if ((isset($_POST['item_name'])) && !empty($_POST['item_name']) && (isset($_POST['item_price']))) {
+        $item_name = $_POST['item_name'];
+        $item_price = $_POST['item_price'];
+
+        $max_item_query = "SELECT MAX(ItemNr) AS max_item_nr FROM items";
+        $max_item_result = mysqli_query($mysql, $max_item_query);
+        $max_item_row = mysqli_fetch_assoc($max_item_result);
+        $max_item_nr = $max_item_row['max_item_nr'] + 1;
+
+        $insert_query = "INSERT INTO items (ItemNr, Item, Price, Sold, Profit) VALUES (" . $max_item_nr . ", '" . $item_name . "', " . $item_price . ", 0, 0)";
+        $insert_result = mysqli_query($mysql, $insert_query);
+
+        if($insert_result) {
+            echo "Item inserted successfully!";
+        } else {
+            echo "Failed to insert item.";
+        }
+        header('Location: items.php');
+        exit();
+    }
+
+    if ((isset($_POST['update_item_id'])) && !empty($_POST['update_item_id']) && (isset($_POST['update_item_price']))) {
+        $update_item_id = $_POST['update_item_id'];
+        $update_item_price = $_POST['update_item_price'];
+        $update_query = "UPDATE items SET Price = " . $update_item_price . " WHERE ItemNr = " . $update_item_id;
+        $update_result = mysqli_query($mysql, $update_query);
+
+        if($update_result) {
+            echo "Item updated successfully!";
+        } else {
+            echo "Failed to update item.";
+        }
+        header('Location: items.php');
+        exit();
     }
 
     $setning  = "SELECT * FROM items";
@@ -98,6 +149,8 @@
             } while ($rad = mysqli_fetch_assoc($resultat));
             echo '
         </table>';
+
+        ob_end_flush();
         ?>
 </body>
 </html>
